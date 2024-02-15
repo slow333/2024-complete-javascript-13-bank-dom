@@ -11,26 +11,28 @@
       rel="stylesheet"
     />
     <link rel="stylesheet" href="style.css" />
-    <title>Bankist | When Banking meets Minimalist</title>
+    <title>Whynet | 고객 서비스 우선</title>
   </head>
   <body>
-    <header class="header">
-      <nav class="nav">
+    <header class="header" id="header">
+      <nav class="nav sticky">
         <img
           src="img/logo.png"
-          alt="Bankist logo"
+          alt="whynet logo"
           class="nav__logo"
           id="logo"
+          madeBy = 'kim'
+          data-version-number = '3.1'
         />
         <ul class="nav__links">
           <li class="nav__item">
-            <a class="nav__link" href="#section--1">Features</a>
+            <a class="nav__link nav__link--text" href="#section--1" >Solutions</a>
           </li>
           <li class="nav__item">
-            <a class="nav__link" href="#section--2">Operations</a>
+            <a class="nav__link nav__link--text" href="#section--2">Services</a>
           </li>
           <li class="nav__item">
-            <a class="nav__link" href="#section--3">Testimonials</a>
+            <a class="nav__link nav__link--text" href="#section--3">Experiences</a>
           </li>
           <li class="nav__item">
             <a class="nav__link nav__link--btn btn--show-modal" href="#"
@@ -42,13 +44,14 @@
 
       <div class="header__title">
         <h1>
-          When
+          <span class="header__title-small">정보시스템을</span>
           <!-- Green highlight effect -->
-          <span class="highlight">banking</span>
-          meets<br />
-          <span class="highlight">minimalist</span>
+          <span class="highlight">구축 · 관리</span>
+          <span class="highlight"></span>
+          <span class="header__title-small">하는데 어려움이 있나요.</span>
         </h1>
-        <h4>A simpler banking experience for a simpler life.</h4>
+        <h4>신기술 도입을 통한 시스템 구축 및 운영관리의
+          효율을 높이기 위한 방법 와이넷 입니다.</h4>
         <button class="btn--text btn--scroll-to">Learn more &DownArrow;</button>
         <img
           src="img/hero.png"
@@ -60,9 +63,9 @@
 
     <section class="section" id="section--1">
       <div class="section__title">
-        <h2 class="section__description">Features</h2>
+        <h2 class="section__description">Solutions</h2>
         <h3 class="section__header">
-          Everything you need in a modern bank and more.
+          신기술 도입 및 구축에 필요한 솔루션을 공급.
         </h3>
       </div>
 
@@ -79,11 +82,10 @@
               <use xlink:href="img/icons.svg#icon-monitor"></use>
             </svg>
           </div>
-          <h5 class="features__header">100% digital bank</h5>
+          <h5 class="features__header">문제점 진단 및 자동화를 위한 AI 기술 도입</h5>
           <p>
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Unde alias
-            sint quos? Accusantium a fugiat porro reiciendis saepe quibusdam
-            debitis ducimus.
+            Mist AI를 활용하여 문제점을 사전에 진단하고 해결 방법을 제시합니다.
+            ...
           </p>
         </div>
 
@@ -93,11 +95,10 @@
               <use xlink:href="img/icons.svg#icon-trending-up"></use>
             </svg>
           </div>
-          <h5 class="features__header">Watch your money grow</h5>
+          <h5 class="features__header">효율성 향상을 위한 자동화 솔루션</h5>
           <p>
-            Nesciunt quos autem dolorum voluptates cum dolores dicta fuga
-            inventore ab? Nulla incidunt eius numquam sequi iste pariatur
-            quibusdam!
+            Apstra는 클라우드 및 Legacy 환경에서 구성을 자동화하고,
+            운영관리의 효율성을 극대화 합니다.
           </p>
         </div>
         <img
@@ -119,11 +120,10 @@
               <use xlink:href="img/icons.svg#icon-credit-card"></use>
             </svg>
           </div>
-          <h5 class="features__header">Free debit card included</h5>
+          <h5 class="features__header">캠퍼스, 엔터프라이즈 관련 솔루션</h5>
           <p>
-            Quasi, fugit in cumque cupiditate reprehenderit debitis animi enim
-            eveniet consequatur odit quam quos possimus assumenda dicta fuga
-            inventore ab.
+            인프라 구축 및 관리에 문제점을 해결하기 위해 컨설팅을 제공합니다.
+            다수의 IDC, 공공기관 구축/운영관리 경험을 바탕으로 ...
           </p>
         </div>
       </div>
@@ -131,29 +131,26 @@
 
     <section class="section" id="section--2">
       <div class="section__title">
-        <h2 class="section__description">Operations</h2>
+        <h2 class="section__description">Services</h2>
         <h3 class="section__header">
-          Everything as simple as possible, but no simpler.
+          컨설팅을 통해 최적의 시스템 구축 및 운영관리 방안을 제시 합니다.
         </h3>
       </div>
 
       <div class="operations">
         <div class="operations__tab-container">
-          <button
-            class="btn operations__tab operations__tab--1 operations__tab--active"
-            data-tab="1"
-          >
-            <span>01</span>Instant Transfers
+          <button class="btn operations__tab operations__tab--1 operations__tab--active" data-tab="1" >
+            <span>01</span>Operation
           </button>
           <button class="btn operations__tab operations__tab--2" data-tab="2">
-            <span>02</span>Instant Loans
+            <span>02</span>System Integration
           </button>
           <button class="btn operations__tab operations__tab--3" data-tab="3">
-            <span>03</span>Instant Closing
+            <span>03</span>Consulting
           </button>
         </div>
         <div
-          class="operations__content operations__content--1 operations__content--active"
+          class="operations__content operations__content--1  operations__content--active"
         >
           <div class="operations__icon operations__icon--1">
             <svg>
@@ -161,13 +158,14 @@
             </svg>
           </div>
           <h5 class="operations__header">
-            Tranfser money to anyone, instantly! No fees, no BS.
+            OP : 자동화, AI 도입을 통해 운영 효율성을 극대화 합니다.
           </h5>
           <p>
             Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
             eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
             ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
             aliquip ex ea commodo consequat.
+            <a href="#header"> 🔝</a>
           </p>
         </div>
 
@@ -178,13 +176,14 @@
             </svg>
           </div>
           <h5 class="operations__header">
-            Buy a home or make your dreams come true, with instant loans.
+            SI/NI : 현시스템의 문제점 분석을 통해 최적의 솔루션으로 문중단 구축합니다.
           </h5>
           <p>
             Duis aute irure dolor in reprehenderit in voluptate velit esse
             cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat
             cupidatat non proident, sunt in culpa qui officia deserunt mollit
             anim id est laborum.
+            <a href="#header"> 🔝</a>
           </p>
         </div>
         <div class="operations__content operations__content--3">
@@ -194,13 +193,14 @@
             </svg>
           </div>
           <h5 class="operations__header">
-            No longer need your account? No problem! Close it instantly.
+            Methode : 체계적인 컨설팅을 통해 구축 및 운영의 최적화 방안을 제시합니다..
           </h5>
           <p>
             Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
             officia deserunt mollit anim id est laborum. Ut enim ad minim
             veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
             ea commodo consequat.
+            <a href="#header"> 🔝</a>
           </p>
         </div>
       </div>
@@ -210,14 +210,14 @@
       <div class="section__title section__title--testimonials">
         <h2 class="section__description">Not sure yet?</h2>
         <h3 class="section__header">
-          Millions of Bankists are already making their lifes simpler.
+          많은 고객들이 이미 와이넷의 다양한 솔루션을 경험하고 있습니다.
         </h3>
       </div>
 
       <div class="slider">
-        <div class="slide slide--1">
+        <div class="slide slide--1 dots__dot--active">
           <div class="testimonial">
-            <h5 class="testimonial__header">Best financial decision ever!</h5>
+            <h5 class="testimonial__header">AI를 활용한 최적의 네트워크 구축!</h5>
             <blockquote class="testimonial__text">
               Lorem ipsum dolor sit, amet consectetur adipisicing elit.
               Accusantium quas quisquam non? Quas voluptate nulla minima
@@ -234,10 +234,10 @@
           </div>
         </div>
 
-        <div class="slide slide--2">
+        <div class="slide slide--2 dots__dot">
           <div class="testimonial">
             <h5 class="testimonial__header">
-              The last step to becoming a complete minimalist
+              NCIS에서 검증된 자동화 솔루션 : Apstra
             </h5>
             <blockquote class="testimonial__text">
               Quisquam itaque deserunt ullam, quia ea repellendus provident,
@@ -254,10 +254,10 @@
           </div>
         </div>
 
-        <div class="slide slide--3">
+        <div class="slide slide--3 dots__dot">
           <div class="testimonial">
             <h5 class="testimonial__header">
-              Finally free from old-school banks
+              다수의 사이트에서 검증된 안정된 인프라 솔루션
             </h5>
             <blockquote class="testimonial__text">
               Debitis, nihil sit minus suscipit magni aperiam vel tenetur
@@ -281,7 +281,7 @@
         <div class="slide"><img src="img/img-4.jpg" alt="Photo 4" /></div> -->
         <button class="slider__btn slider__btn--left">&larr;</button>
         <button class="slider__btn slider__btn--right">&rarr;</button>
-        <div class="dots"></div>
+        <div class="dots "></div>
       </div>
     </section>
 
@@ -351,5 +351,6 @@
     <div class="overlay hidden"></div>
 
     <script src="script.js"></script>
+    <script src="exercises.js"></script>
   </body>
 </html>
