@@ -1,5 +1,5 @@
 'use strict';
-console.log('==== getComputedStyle and getAttribute ====')
+// console.log('==== getComputedStyle and getAttribute ====')
 // message.style.backgroundColor = '#373723';
 // message.style.width = '107%';
 // message.style.height =
@@ -38,7 +38,7 @@ console.log('==== getComputedStyle and getAttribute ====')
 // setTimeout(() =>
 //   h1.removeEventListener('mouseenter', h1MouseEnter)
 //   , 4000);
-console.log('=============== event bubbling and capturing ===================');
+// console.log('=============== event bubbling and capturing ===================');
 // parent node에 적용된 이벤트도 같이 적용됨
 /*const randomInt = (min, max) => Math.floor(Math.random() * (max - min + 1));
 const randomColor = () =>

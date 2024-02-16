@@ -31,7 +31,7 @@ const closeModal = function () {
 };
 
 btnsOpenModal.forEach(modal =>
-  modal.addEventListener('click', openModal))
+     modal.addEventListener('click', openModal))
 
 btnCloseModal.addEventListener('click', closeModal);
 overlay.addEventListener('click', closeModal);
@@ -41,48 +41,26 @@ document.addEventListener('keydown', function (e) {
     closeModal();
   }
 });
+const blurImg = function (value) {
+  document.querySelectorAll('.lazy-img')
+       .forEach(el => el.style.filter = `blur(${value})`);
+};
 //////////////////////////////////
 // smooth scroll => learn more ↓  
 btnScrollTo.addEventListener('click', function (e) {
-  // e.preventDefault();
-  // const s1coords = section1.getBoundingClientRect();
-  // console.log('s1 => ', s1coords);
-  // console.log('btn scroll to => ', e.target.getBoundingClientRect())
-  // const xPositionFromScreenTopToPage = window.scrollX;
-  // const yPositionFromScreenTopToPage = window.scrollY;
-  // console.log(xPositionFromScreenTopToPage, yPositionFromScreenTopToPage)
-  // console.log('height/width viewport',
-  //   document.documentElement.clientHeight,
-  //   document.documentElement.clientWidth) // 보이는 화면의 크기
-  // window.scrollTo(
-  //   s1coords.x + xPositionFromScreenTopToPage,
-  //   s1coords.y + yPositionFromScreenTopToPage)
-  // window.scroll({
-  //   top: s1coords.top + yPositionFromScreenTopToPage,
-  //   left: s1coords.left + xPositionFromScreenTopToPage,
-  //   behavior: 'smooth',
-  // });
+  e.preventDefault();
+  // blurImg('0px');
   section1.scrollIntoView({behavior: 'smooth'});
-  document.querySelectorAll('.features__img')
-    .forEach(el => el.classList.remove('lazy-img'));
 });
-// smooth : 윈도우 설정이 성능최적화로 되어 있으면 적용안됨. 쩝
-// document.querySelectorAll('.nav__link').forEach(function (el) {
-//   el.addEventListener('click', function (e) {
-//     e.preventDefault();
-//     const id = this.getAttribute('href');
-//     document.querySelector(id).scrollIntoView({ behavior: 'smooth'})
-//   })
-// });
 
 // Menu fade animation
 const handleHover = function (e) {
   if (e.target.classList.contains('nav__link')) {
     const link = e.target;
     const siblings = link.closest('.nav')
-      .querySelectorAll('.nav__link');
+         .querySelectorAll('.nav__link');
     const logo = link.closest('.nav')
-      .querySelector('img');
+         .querySelector('img');
     siblings.forEach(el => {
       if (el !== link) el.style.opacity = this
     });
@@ -93,14 +71,11 @@ nav.addEventListener('mouseover', handleHover.bind(0.5));
 nav.addEventListener('mouseout', handleHover.bind(1));
 
 nav.addEventListener('click', function (e) {
-  // e.preventDefault();
   const clicked = e.target;
-  // if (!clicked) return;
-  document.querySelectorAll('.features__img')
-    .forEach(el => el.classList.remove('lazy-img'));
   if (e.target.classList.contains('nav__link')) {
     const togo = document.querySelector(clicked.getAttribute('href'));
     togo.scrollIntoView({behavior: 'smooth'});
+    // blurImg('0px');
   }
 });
 
@@ -112,49 +87,137 @@ tabsContainer.addEventListener('click', function (e) {
 
   // Active tab
   tabs.forEach(el =>
-    el.classList.remove('operations__tab--active'))
+       el.classList.remove('operations__tab--active'))
   clicked.classList.add('operations__tab--active');
   // Active content
   tabsContent.forEach(el =>
-    el.classList.remove('operations__content--active'))
+       el.classList.remove('operations__content--active'))
   document
-    .querySelector(`.operations__content--${clicked.dataset.tab}`)
-    .classList.add('operations__content--active');
+       .querySelector(`.operations__content--${clicked.dataset.tab}`)
+       .classList.add('operations__content--active');
 })
 
-// sticky navigation
-const initialCoords = section1.getBoundingClientRect();
-// console.log('init', initialCoords)
-window.addEventListener('scroll', function (e) {
-  e.preventDefault();
-  // console.log(window.scrollY)
-  if (window.scrollY > initialCoords.top) {
+const navHeight = nav.getBoundingClientRect().height;
+const stickyNav = function (entries) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) {
     nav.classList.add('sticky');
-    document.querySelectorAll('.features__img')
-      .forEach(el => el.classList.remove('lazy-img'));
   } else {
     nav.classList.remove('sticky');
-    document.querySelectorAll('.features__img')
-      .forEach(el => el.classList.add('lazy-img'));
   }
+};
+
+const headerObserver = new IntersectionObserver
+(stickyNav, {
+  root: null,
+  threshold: 0, rootMargin: `-${navHeight}px`
+})
+headerObserver.observe(header)
+
+// Reveal sections
+const allSections = document.querySelectorAll('.section')
+const revealSection = function (entries, observer) {
+  const [entry] = entries;
+  if (!entry.isIntersecting) return;
+  entry.target.classList.remove('section--hidden');
+  observer.unobserve(entry.target)
+};
+const sectionObserver = new IntersectionObserver
+(revealSection, {
+  root: null,
+  threshold: 0.5,
+});
+allSections.forEach(function (section) {
+  sectionObserver.observe(section);
+  // section.classList.add('section--hidden')
 });
 
+// Lazy loading images => 위치로 적용하기 때문에 nav로 가도 적용됨
+const imageTargets = document.querySelectorAll('img[data-src]');
 
-/////////////////////////////////
-// message insert ..
-const message = document.createElement('div');
-message.classList.add('cookie-message')
-message.innerHTML = '현재 홈페이지 구축 중입니다.' +
-  '<button class="btn--close-cookie">🎉 OK 🎉 </button>'
-header.append(message);
-// header.after(message); // 관련 내용 밖에 붙임.
-document
-  .querySelector('.btn--close-cookie')
-  .addEventListener('click', function (ev) {
-    ev.preventDefault();
-    // message.remove();
-    message.parentNode.removeChild(message);
+const loadImg = function (entries, observer) {
+  const [entry] = entries;
+  if(!entry.isIntersecting) return;
+
+  entry.target.src = entry.target.dataset.src;
+
+  entry.target.addEventListener('load', function () {
+    entry.target.classList.remove('lazy-img');
   });
-setTimeout(() =>
-    message.parentNode.removeChild(message)
-  , 3000)
+  observer.unobserve(entry.target)
+};
+
+const imgObserver = new IntersectionObserver
+(loadImg,{
+  root: null, threshold: 0, rootMargin: '200px'
+})
+
+imageTargets.forEach(img => imgObserver.observe(img))
+
+// slider
+const slider = function () {
+  const slides = document.querySelectorAll('.slide');
+  const btnLeft = document.querySelector('.slider__btn--left');
+  const btnRight = document.querySelector('.slider__btn--right');
+  const dotContainer = document.querySelector('.dots');
+
+///////////////////////
+// functions
+  const createDots = function () {
+    slides.forEach(function (_, i) {
+      dotContainer.insertAdjacentHTML('beforeend', `
+    <button class="dots__dot" data-slide="${i}"></button>`)
+    });
+  };
+
+  const activateDot = function (slide) {
+    document.querySelectorAll('.dots__dot')
+         .forEach(d => d.classList.remove('dots__dot--active'))
+    document.querySelector(`.dots__dot[data-slide="${slide}"]`)
+         .classList.add('dots__dot--active')
+  };
+
+  const goToSlide = function (slide) {
+    slides.forEach((s, i) =>
+         s.style.transform =`translateX(${100 * (i - slide)}%)`)
+  }
+
+  let curSlide = 0;
+  const nextSlide = function () {
+    if(curSlide === slides.length -1) curSlide = 0;
+    else curSlide++;
+    goToSlide(curSlide);
+    activateDot(curSlide);
+
+  };
+  const preSlide = function () {
+    if(curSlide === 0) curSlide = slides.length -1;
+    else curSlide--;
+    goToSlide(curSlide);
+    activateDot(curSlide);
+  };
+  btnRight.addEventListener('click', nextSlide);
+  btnLeft.addEventListener('click', preSlide);
+
+  const init = function () {
+    createDots();
+    goToSlide(0);
+    activateDot(0);
+  };
+  init();
+
+// Event handler
+  document.addEventListener('keydown', function (e) {
+    e.key === 'ArrowRight' && nextSlide();
+    e.key === 'ArrowLeft' && preSlide();
+  });
+
+  dotContainer.addEventListener('click', function (e) {
+    if (e.target.classList.contains('dots__dot')) {
+      const {slide} = e.target.dataset;
+      goToSlide(slide);
+      activateDot(slide)
+    }
+  });
+};
+slider();
