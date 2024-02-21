@@ -137,7 +137,7 @@ const imageTargets = document.querySelectorAll('img[data-src]');
 
 const loadImg = function (entries, observer) {
   const [entry] = entries;
-  if(!entry.isIntersecting) return;
+  if (!entry.isIntersecting) return;
 
   entry.target.src = entry.target.dataset.src;
 
@@ -148,7 +148,7 @@ const loadImg = function (entries, observer) {
 };
 
 const imgObserver = new IntersectionObserver
-(loadImg,{
+(loadImg, {
   root: null, threshold: 0, rootMargin: '200px'
 })
 
@@ -179,19 +179,19 @@ const slider = function () {
 
   const goToSlide = function (slide) {
     slides.forEach((s, i) =>
-         s.style.transform =`translateX(${100 * (i - slide)}%)`)
+         s.style.transform = `translateX(${100 * (i - slide)}%)`)
   }
 
   let curSlide = 0;
   const nextSlide = function () {
-    if(curSlide === slides.length -1) curSlide = 0;
+    if (curSlide === slides.length - 1) curSlide = 0;
     else curSlide++;
     goToSlide(curSlide);
     activateDot(curSlide);
 
   };
   const preSlide = function () {
-    if(curSlide === 0) curSlide = slides.length -1;
+    if (curSlide === 0) curSlide = slides.length - 1;
     else curSlide--;
     goToSlide(curSlide);
     activateDot(curSlide);
@@ -221,3 +221,6 @@ const slider = function () {
   });
 };
 slider();
+
+
+

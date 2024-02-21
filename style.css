@@ -100,6 +100,7 @@ body {
   padding-bottom: 2px;
   cursor: pointer;
   transition: all 0.3s;
+  margin: 4rem auto 0 2rem;
 }
 
 p {
@@ -200,8 +201,10 @@ img {
 
   max-width: 115rem;
   display: grid;
+  /*grid-template-columns: auto 2fr;*/
   grid-template-columns: 3fr 2fr;
-  row-gap: 3rem;
+  /*grid-template-rows: auto;*/
+  row-gap: 2rem;
   align-content: center;
   justify-content: center;
 
@@ -213,6 +216,18 @@ img {
 h1 {
   font-size: 4rem;
   line-height: 1.5;
+}
+.header__title-head {
+  font-size: 1.6rem;
+  line-height: 1.5;
+  font-weight: 600;
+  margin: 1.4rem 2rem;
+}
+ul li {
+  margin-left: 4rem;
+  font-size: 1.3rem;
+  line-height: 1.5;
+  font-weight: 600;
 }
 .header__title-small {
   font-size: 3rem;
